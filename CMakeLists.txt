@@ -15,14 +15,13 @@ set(LIBS ${LIBS} ${ROOT_LIBS})
 add_executable(testRoot execTestRoot.cxx)
 target_link_libraries(testRoot ${LIBS})
 
-
-
 #AliROOT
 find_package(ALIROOT REQUIRED)
 include_directories(SYSTEM ${ALIROOT_INCLUDES})
 set(LIBS ${LIBS} ${ALIROOT_LIBS})
 
-subdirs(task)
+
+add_subdirectory(task)
 include_directories(task)
 
 add_executable(testAliRoot execAliTask.cxx)
