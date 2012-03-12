@@ -21,8 +21,8 @@ include_directories(SYSTEM ${ALIROOT_INCLUDES})
 set(LIBS ${LIBS} ${ALIROOT_LIBS})
 
 
-add_subdirectory(task)
 include_directories(task)
+add_subdirectory(task)
 
 add_executable(testAliRoot execAliTask.cxx)
 target_link_libraries(testAliRoot ${LIBS} PtTask)
