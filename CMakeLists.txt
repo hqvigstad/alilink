@@ -16,8 +16,8 @@ add_executable(testRoot execTestRoot.cxx)
 target_link_libraries(testRoot ${LIBS})
 
 #AliROOT
-find_package(ALIROOT REQUIRED)
-include_directories(SYSTEM ${ALIROOT_INCLUDES})
+find_package(ALIROOT REQUIRED PHOS)
+include_directories(SYSTEM $ENV{ALICE_ROOT}/include $ENV{ALICE_ROOT}/PHOS)
 set(LIBS ${LIBS} ${ALIROOT_LIBS})
 
 
