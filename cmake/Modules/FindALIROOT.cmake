@@ -74,6 +74,25 @@ foreach( component ${ALIROOT_FIND_COMPONENTS} )
 endforeach( component )
 
 
+#RAW
+if(ALIROOT_USE_RAW)
+  find_file(ALIROOT_RAW_FOUND NAMES AliRAWReconstructor.h  PATHS $ENV{ALICE_ROOT}/RAW/)
+  if(ALIROOT_RAW_FOUND)
+    # includes
+    set(ALIROOT_RAW_INCLUDE $ENV{ALICE_ROOT}/RAW/)
+    set(ALIROOT_INCLUDE ${ALIROOT_INCLUDE} ${ALIROOT_RAW_INCLUDE})
+    # libs
+    set(ALIROOT_RAW_LIB "-L${ALIROOT_LIB_DIR} -lRAWDatarecOnline")
+    set(ALIROOT_LIB ${ALIROOT_LIB} ${ALIROOT_RAW_LIB})
+  elseif(ALIROOT_RAW_FOUND)
+    message(STATUS "ALIROOT_RAW not found")
+    if(ALIROOT_FIND_REQUIRED)
+      message(FATAL_ERROR "could not find AliRAWReconstructor.h in $ENV{ALICE_ROOT}/RAW/")
+    endif(ALIROOT_FIND_REQUIRED)
+  endif(ALIROOT_RAW_FOUND)
+endif(ALIROOT_USE_RAW)
+
+
 # PHOS
 if(ALIROOT_USE_PHOS)
   find_file(ALIROOT_PHOS_FOUND NAMES AliPHOSReconstructor.h  PATHS $ENV{ALICE_ROOT}/PHOS/)
